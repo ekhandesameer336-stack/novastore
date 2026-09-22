@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { connectDB } from './src/config/db.js';
 import healthRoutes from './src/routes/health.js';
+import authRoutes from './src/routes/auth.js';
 import { notFound, errorHandler } from './src/middleware/error.js';
 
 // Load environment variables from .env file
@@ -40,6 +41,7 @@ app.get('/', (req, res) => {
 
 // Mount Routes
 app.use('/api/health', healthRoutes);
+app.use('/api/auth', authRoutes);
 
 // Error Handling Middleware
 app.use(notFound);
