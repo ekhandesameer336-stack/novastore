@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import { connectDB } from './src/config/db.js';
 import healthRoutes from './src/routes/health.js';
 import authRoutes from './src/routes/auth.js';
+import productRoutes from './src/routes/products.js';
 import { notFound, errorHandler } from './src/middleware/error.js';
 
 // Load environment variables from .env file
@@ -42,6 +43,7 @@ app.get('/', (req, res) => {
 // Mount Routes
 app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes);
 
 // Error Handling Middleware
 app.use(notFound);
