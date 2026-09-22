@@ -8,6 +8,7 @@ import healthRoutes from './src/routes/health.js';
 import authRoutes from './src/routes/auth.js';
 import productRoutes from './src/routes/products.js';
 import orderRoutes from './src/routes/orders.js';
+import paymentRoutes from './src/routes/payments.js';
 import { notFound, errorHandler } from './src/middleware/error.js';
 
 // Load environment variables from .env file
@@ -46,6 +47,7 @@ app.use('/api/health', healthRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/create-payment-intent', paymentRoutes);
 
 // Error Handling Middleware
 app.use(notFound);
