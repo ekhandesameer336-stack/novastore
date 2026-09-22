@@ -4,6 +4,8 @@ import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import ProtectedRoute from './components/ProtectedRoute';
+import AdminRoute from './components/AdminRoute';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -29,11 +31,38 @@ function App() {
                 <Route path="/products" element={<ProductListPage />} />
                 <Route path="/products/:id" element={<ProductDetailPage />} />
                 <Route path="/cart" element={<CartPage />} />
-                <Route path="/checkout" element={<CheckoutPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/register" element={<RegisterPage />} />
-                <Route path="/my-orders" element={<MyOrdersPage />} />
-                <Route path="/admin" element={<AdminDashboardPage />} />
+
+                {/* Protected Customer Routes */}
+                <Route
+                  path="/checkout"
+                  element={
+                    <ProtectedRoute>
+                      <CheckoutPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/my-orders"
+                  element={
+                    <ProtectedRoute>
+                      <MyOrdersPage />
+                    </ProtectedRoute>
+                  }
+                />
+
+                {/* Protected Admin Routes */}
+                <Route
+                  path="/admin"
+                  element={
+                    <AdminRoute>
+                      <AdminDashboardPage />
+                    </AdminRoute>
+                  }
+                />
+
+                {/* 404 Route */}
                 <Route
                   path="*"
                   element={
