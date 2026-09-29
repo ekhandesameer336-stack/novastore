@@ -92,7 +92,9 @@ const sampleProducts = [
 export const seedDatabase = async () => {
   try {
     console.log('--- Seeding Database ---');
-    await connectDB();
+    if (mongoose.connection.readyState !== 1) {
+      await connectDB();
+    }
 
     // Check if admin user already exists
     const existingAdmin = await User.findOne({ email: 'admin@example.com' });

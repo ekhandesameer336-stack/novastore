@@ -14,8 +14,17 @@ import { notFound, errorHandler } from './src/middleware/error.js';
 // Load environment variables from .env file
 dotenv.config();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB and auto-seed demo data if database is empty
+connectDB().then(async () => {
+  if (process.env.NODE_ENV !== 'production' || process.env.AUTO_SEED === 'true') {
+    try {
+      const { seedDatabase } = await import('./seed.js');
+      await seedDatabase();
+    } catch (e) {
+      console.error('Auto-seed check error:', e.message);
+    }
+  }
+});
 
 const app = express();
 
