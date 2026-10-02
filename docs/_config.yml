@@ -1,0 +1,8 @@
+title: NovaStore
+email: support@novastore.example
+description: >-
+  NovaStore is a full-stack e-commerce platform for demo and deployment.
+baseurl: ""
+url: ""
+theme: jekyll-theme-primer
+plugins: []
